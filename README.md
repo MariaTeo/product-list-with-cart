@@ -17,8 +17,8 @@ Users should be able to:
 
 ### Links
 
-* Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/responsive-product-list-with-cart-UvYA--yvLy)
-* Live Site URL: [Add live site URL here](https://productlistwithcartvue.netlify.app/)
+* Solution URL: [Frontend Mentor Challenge submission](https://www.frontendmentor.io/solutions/responsive-product-list-with-cart-UvYA--yvLy)
+* Live Site URL: [Netlify deployed app](https://productlistwithcartvue.netlify.app/)
 
 ## My process
 
