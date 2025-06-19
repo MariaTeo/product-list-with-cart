@@ -52,7 +52,7 @@ onMounted(() => {
   }
 
   @media (min-width: 1440px) {
-    padding: 3rem;
+    padding: 4rem;
   }
 }
 
@@ -66,7 +66,7 @@ onMounted(() => {
 }
 
 .page-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--rose-900);
   margin-bottom: 2rem;
 }
