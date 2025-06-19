@@ -52,7 +52,7 @@ onMounted(() => {
   }
 
   @media (min-width: 1440px) {
-    padding: 4rem;
+    padding: 4rem 5rem;
   }
 }
 
