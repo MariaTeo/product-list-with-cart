@@ -1,36 +1,19 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import ProductCard from './components/ProductCard.vue'
 import Cart from './components/CartItems.vue'
 import OrderModal from './components/OrderModal.vue'
 import { useCartStore } from './store/cart'
+import { useProductsStore } from './store/products'
 
-const products = ref([])
 const cart = useCartStore()
-const isOrderModalVisible = ref(false)
+const productsStore = useProductsStore()
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/data.json')
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    products.value = await response.json()
-  } catch (error) {
-    console.error('Failed to load products:', error)
+onMounted(() => {
+  if (!productsStore.isProductsLoaded) {
+    productsStore.fetchProducts()
   }
 })
-
-const showOrderConfirmation = () => {
-  if (cart.cartItems.length > 0) {
-    isOrderModalVisible.value = true
-  }
-}
-
-const handleStartNewOrder = () => {
-  isOrderModalVisible.value = false
-  cart.resetCart()
-}
 </script>
 
 <template>
@@ -39,33 +22,21 @@ const handleStartNewOrder = () => {
       <h1 class="page-title">Desserts</h1>
       <div class="product-grid">
         <ProductCard
-          v-for="product in products"
+          v-for="product in productsStore.getProducts"
           :key="product.name"
           :product="product"
-          :cart-items="cart.cartItems"
-          @add-to-cart="cart.addToCart"
-          @increment-quantity="cart.incrementQuantity"
-          @decrement-quantity="cart.decrementQuantity"
         />
       </div>
     </main>
 
     <aside class="sidebar">
-      <Cart
-        :cart-items="cart.cartItems"
-        :total-items="cart.totalCartItems"
-        :total-price="cart.totalCartPrice"
-        @remove-item="cart.removeItem"
-        @confirm-order="showOrderConfirmation"
-      />
+      <Cart @confirm-order="cart.confirmOrder()" />
     </aside>
 
     <OrderModal
-      :is-visible="isOrderModalVisible"
-      :cart-items="cart.cartItems"
-      :order-total="cart.totalCartPrice"
-      @close="isOrderModalVisible = false"
-      @start-new-order="handleStartNewOrder"
+      :is-visible="cart.isOrderModalVisible"
+      @close="cart.isOrderModalVisible = false"
+      @start-new-order="cart.resetCart()"
     />
   </div>
 </template>
