@@ -52,7 +52,7 @@ onMounted(() => {
   }
 
   @media (min-width: 1440px) {
-    padding: 4.5rem 5.5rem;
+    padding: 3rem 5.5rem;
   }
 }
 
@@ -68,7 +68,7 @@ onMounted(() => {
 .page-title {
   font-size: 2.5rem;
   color: var(--rose-900);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .product-grid {
