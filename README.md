@@ -58,9 +58,7 @@ async fetchProducts() {
   }
 }
 
-
-
-
+```
 
 
 
